@@ -1,0 +1,151 @@
+igor@igor-ThinkPad-T480:~$ ssh -i /home/igor/ich/ich.pem ec2-user@3.79.39.74
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@         WARNING: UNPROTECTED PRIVATE KEY FILE!          @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Permissions 0664 for '/home/igor/ich/ich.pem' are too open.
+It is required that your private key files are NOT accessible by others.
+This private key will be ignored.
+Load key "/home/igor/ich/ich.pem": bad permissions
+ec2-user@3.79.39.74: Permission denied (publickey,gssapi-keyex,gssapi-with-mic).
+
+
+
+
+
+igor@igor-ThinkPad-T480:~$ chmod 600 /home/igor/ich/ich.pem
+igor@igor-ThinkPad-T480:~$ ssh -i /home/igor/ich/ich.pem ec2-user@3.79.39.74
+Last login: Mon Jan  6 09:46:41 2025 from 80.74.170.182
+65 package(s) needed for security, out of 100 available
+Run "sudo yum update" to apply all updates.
+
+
+
+
+
+
+[ec2-user@ip-10-0-41-237 ~]$ sudo service httpd status
+Redirecting to /bin/systemctl status httpd.service
+● httpd.service - The Apache HTTP Server
+   Loaded: loaded (/usr/lib/systemd/system/httpd.service; enabled; vendor preset: disabled)
+  Drop-In: /usr/lib/systemd/system/httpd.service.d
+           └─php-fpm.conf
+   Active: active (running) since пон 2025-01-06 09:38:36 UTC; 22h ago
+     Docs: man:httpd.service(8)
+ Main PID: 2074 (httpd)
+   Status: "Total requests: 227; Idle/Busy workers 90/10;Requests/sec: 0.00278; Bytes served/sec:   2 B/sec"
+   CGroup: /system.slice/httpd.service
+           ├─ 2074 /usr/sbin/httpd -DFOREGROUND
+           ├─ 2264 /usr/sbin/httpd -DFOREGROUND
+           ├─ 2270 /usr/sbin/httpd -DFOREGROUND
+           ├─ 2642 /usr/sbin/httpd -DFOREGROUND
+           ├─ 3090 /usr/sbin/httpd -DFOREGROUND
+           ├─10778 /usr/sbin/httpd -DFOREGROUND
+           ├─19772 /usr/sbin/httpd -DFOREGROUND
+           ├─19773 /usr/sbin/httpd -DFOREGROUND
+           ├─19786 /usr/sbin/httpd -DFOREGROUND
+           ├─19796 /usr/sbin/httpd -DFOREGROUND
+           └─19802 /usr/sbin/httpd -DFOREGROUND
+
+јан 06 09:38:35 ip-10-0-40-149.eu-central-1.compute.internal systemd[1]: Start...
+јан 06 09:38:36 ip-10-0-41-237.eu-central-1.compute.internal systemd[1]: Start...
+Hint: Some lines were ellipsized, use -l to show in full.
+
+
+
+
+
+[ec2-user@ip-10-0-41-237 ~]$ ls
+credentials  LocalSettings (5).php
+
+
+
+
+
+[ec2-user@ip-10-0-41-237 ~]$ sudo find / -type f -name "LocalSettings.php"
+/var/www/html/mediawiki/LocalSettings.php
+
+
+
+
+
+[ec2-user@ip-10-0-41-237 ~]$ ls -l
+итого 12
+-rw-r--r-- 1 root     root      349 апр  2  2024 credentials
+-rw-r--r-- 1 ec2-user ec2-user 5336 апр  2  2024 LocalSettings (5).php
+
+
+
+
+[ec2-user@ip-10-0-41-237 ~]$ cat L-bash: cannot create temp file for here-document: No space left on device
+
+cat: L: No such file or directory
+[ec2-user@ip-10-0-41-237 ~]$ cat L-bash: cannot create temp file for here-document: No space left on device
+
+cat: L: No such file or directory
+[ec2-user@ip-10-0-41-237 ~]$ cat Lo-bash: cannot create temp file for here-document: No space left on device
+
+
+[ec2-user@ip-10-0-41-237 ~]$ df -h
+Файловая система Размер Использовано  Дост Использовано% Cмонтировано в
+devtmpfs           1,9G            0  1,9G            0% /dev
+tmpfs              1,9G            0  1,9G            0% /dev/shm
+tmpfs              1,9G          65M  1,9G            4% /run
+tmpfs              1,9G            0  1,9G            0% /sys/fs/cgroup
+/dev/nvme0n1p1      10G          10G   20K          100% /
+tmpfs              389M            0  389M            0% /run/user/1000
+
+
+
+
+[ec2-user@ip-10-0-41-237 ~]$ sudo find / -type f -size +1G
+/proc/kcore
+find: ‘/proc/20434/task/20434/fdinfo/5’: No such file or directory
+find: ‘/proc/20434/fdinfo/6’: No such file or directory
+/var/log/httpd/access_log
+
+
+
+
+
+sudo truncate -s 0 /var/log/httpd/access_log
+
+
+
+[ec2-user@ip-10-0-41-237 ~]$ sudo du -h /var/log/httpd/access_log
+0       /var/log/httpd/access_log
+
+
+
+
+
+/var/www/html/mediawiki/LocalSettings.php
+## The protocol and server name to use in fully-qualified URLs
+$wgServer = "https://18.153.51.162";
+
+
+
+
+
+[ec2-user@ip-10-0-41-237 ~]$ crontab -l
+no crontab for ec2-user
+[ec2-user@ip-10-0-41-237 ~]$ sudo crontab -l
+* * * * * tar -czf /var/log/httpd/log_$(date +\%Y\%m\%d).tar.gz -C /var/log/httpd .
+
+
+
+
+
+
+[ec2-user@ip-10-0-41-237 ~]$ ls -l
+итого 16
+-rw-r--r-- 1 root     root      349 апр  2  2024 credentials
+-rw-r--r-- 1 ec2-user ec2-user 5336 апр  2  2024 LocalSettings (5).php
+-rw-rw-r-- 1 ec2-user ec2-user 1183 јан  7 09:00 log_backup.sh
+[ec2-user@ip-10-0-41-237 ~]$ chmod +x log_backup.sh
+[ec2-user@ip-10-0-41-237 ~]$ ls -l
+итого 16
+-rw-r--r-- 1 root     root      349 апр  2  2024 credentials
+-rw-r--r-- 1 ec2-user ec2-user 5336 апр  2  2024 LocalSettings (5).php
+-rwxrwxr-x 1 ec2-user ec2-user 1183 јан  7 09:00 log_backup.sh
+
+
